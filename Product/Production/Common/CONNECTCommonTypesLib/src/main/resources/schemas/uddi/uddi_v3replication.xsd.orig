@@ -9,9 +9,16 @@
     
 	Copyright (c) OASIS Open 2002-2004. All Rights Reserved.
 	-->
+<<<<<<< Updated upstream
+	<import namespace="urn:uddi-org:api_v3" schemaLocation="uddi_v3.xsd"/>
+	<import namespace="urn:uddi-org:custody_v3" schemaLocation="uddi_v3custody.xsd"/>
+	<import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/>
+=======
 	<xsd:import namespace="urn:uddi-org:api_v3" schemaLocation="uddi_v3.xsd"/>
 	<xsd:import namespace="urn:uddi-org:custody_v3" schemaLocation="uddi_v3custody.xsd"/>
-	<xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/>
+	<!-- <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/> -->
+	<xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+>>>>>>> Stashed changes
 	<!-- Attribute type definitions -->
 	<xsd:simpleType name="controlledMessage_type" final="restriction">
 		<xsd:restriction base="uddi:validationTypeString255"/>
@@ -26,7 +33,7 @@
 		<xsd:restriction base="uddi:uddiKey"/>
 	</xsd:simpleType>
 	<xsd:simpleType name="operatorStatus_type" final="#all">
-		<xsd:restriction base="xsd:string">
+		<xsd:restriction base="string">
 			<xsd:maxLength value="16"/>
 			<xsd:enumeration value="new"/>
 			<xsd:enumeration value="normal"/>
@@ -34,7 +41,7 @@
 		</xsd:restriction>
 	</xsd:simpleType>
 	<xsd:simpleType name="USN_type" final="#all">
-		<xsd:restriction base="xsd:integer">
+		<xsd:restriction base="integer">
 			<xsd:minInclusive value="0"/>
 			<xsd:maxInclusive value="9223372036854775807"/>
 		</xsd:restriction>
@@ -46,7 +53,7 @@
 				<xsd:element name="changeID" type="uddi_repl:changeRecordID_type"/>
 				<xsd:group ref="uddi_repl:changeRecordPayload_type"/>
 			</xsd:sequence>
-			<xsd:attribute name="acknowledgementRequested" type="xsd:boolean" use="required"/>
+			<xsd:attribute name="acknowledgementRequested" type="boolean" use="required"/>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="changeRecordAcknowledgement">
@@ -82,8 +89,8 @@
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element ref="uddi:publisherAssertion"/>
-				<xsd:element name="fromBusinessCheck" type="xsd:boolean"/>
-				<xsd:element name="toBusinessCheck" type="xsd:boolean"/>
+				<xsd:element name="fromBusinessCheck" type="boolean"/>
+				<xsd:element name="toBusinessCheck" type="boolean"/>
 				<xsd:element name="modified" type="uddi:timeInstant"/>
 			</xsd:sequence>
 		</xsd:complexType>
@@ -127,8 +134,8 @@
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element ref="uddi:publisherAssertion"/>
-				<xsd:element name="fromBusinessCheck" type="xsd:boolean"/>
-				<xsd:element name="toBusinessCheck" type="xsd:boolean"/>
+				<xsd:element name="fromBusinessCheck" type="boolean"/>
+				<xsd:element name="toBusinessCheck" type="boolean"/>
 				<xsd:element name="modified" type="uddi:timeInstant"/>
 				<xsd:element ref="uddi_repl:fromSignatures" minOccurs="0"/>
 				<xsd:element ref="uddi_repl:toSignatures" minOccurs="0"/>
@@ -200,7 +207,7 @@
 				<xsd:element name="requestingNode" type="uddi_repl:operatorNodeID_type"/>
 				<xsd:element name="changesAlreadySeen" type="uddi_repl:highWaterMarkVector_type" minOccurs="0"/>
 				<xsd:choice minOccurs="0">
-					<xsd:element name="responseLimitCount" type="xsd:integer"/>
+					<xsd:element name="responseLimitCount" type="integer"/>
 					<xsd:element name="responseLimitVector" type="uddi_repl:highWaterMarkVector_type"/>
 				</xsd:choice>
 			</xsd:sequence>
@@ -232,7 +239,7 @@
 				<xsd:element ref="uddi_repl:operatorNodeID"/>
 				<xsd:element name="operatorStatus" type="uddi_repl:operatorStatus_type"/>
 				<xsd:element ref="uddi:contact" maxOccurs="unbounded"/>
-				<xsd:element name="soapReplicationURL" type="xsd:anyURI"/>
+				<xsd:element name="soapReplicationURL" type="anyURI"/>
 				<xsd:element ref="dsig:KeyInfo" minOccurs="0" maxOccurs="unbounded"/>
 			</xsd:sequence>
 		</xsd:complexType>
@@ -259,8 +266,8 @@
 				</xsd:element>
 				<xsd:element ref="uddi_repl:operator" minOccurs="0" maxOccurs="unbounded"/>
 				<xsd:element ref="uddi_repl:communicationGraph" minOccurs="0"/>
-				<xsd:element name="maximumTimeToSyncRegistry" type="xsd:integer" minOccurs="0"/>
-				<xsd:element name="maximumTimeToGetChanges" type="xsd:integer"/>
+				<xsd:element name="maximumTimeToSyncRegistry" type="integer" minOccurs="0"/>
+				<xsd:element name="maximumTimeToGetChanges" type="integer"/>
 				<xsd:element ref="dsig:Signature" minOccurs="0" maxOccurs="unbounded"/>
 			</xsd:sequence>
 		</xsd:complexType>

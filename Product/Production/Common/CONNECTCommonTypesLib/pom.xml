@@ -10,7 +10,7 @@
     <artifactId>CONNECTCommonTypesLib</artifactId>
     <packaging>jar</packaging>
     <name>CONNECT common types</name>
-    
+
     <properties>
         <skip.unpack>true</skip.unpack>
     </properties>
@@ -39,6 +39,7 @@
                     <generateDirectory>${project.build.directory}/generated-sources/</generateDirectory>
                     <schemaDirectory>${basedir}/src/main/resources/schemas/</schemaDirectory>
                     <schemaIncludes>
+                        <!-- <include>HL7V3/**/*.xsd</include> -->
                         <include>nhinc/**/*.xsd</include>
                         <include>docs.oasis-open.org/**/*.xsd</include>
                         <include>ebRS/**/*.xsd</include>
@@ -127,5 +128,39 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
+    <profiles>
+        <profile>
+            <id>xsd</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>xml-maven-plugin</artifactId>
+                        <version>1.0</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>validate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <validationSets>
+                                <validationSet>
+                                    <dir>${basedir}/src/main/resources/schemas</dir>
+                                    <systemId>http://www.w3.org/2001/XMLSchema.xsd</systemId>
+                                    <includes>
+                                        <include>**/*.xsd</include>
+                                    </includes>
+                                </validationSet>
+                            </validationSets>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
