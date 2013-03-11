@@ -1,21 +1,9 @@
--- create application user
-CREATE USER nhincuser IDENTIFIED BY 'nhincpass';
 
--- begin assigning authority
-CREATE DATABASE assigningauthoritydb;
 
-CREATE TABLE assigningauthoritydb.aa_to_home_community_mapping (
-  id int(10) unsigned NOT NULL auto_increment,
-  assigningauthorityid varchar(64) NOT NULL,
-  homecommunityid varchar(64) NOT NULL,
-  PRIMARY KEY  (id,assigningauthorityid)
-);
 
-GRANT SELECT,INSERT,UPDATE,DELETE ON assigningauthoritydb.* to nhincuser;
--- end assigning authority
 
--- begin auditrepo
-CREATE DATABASE auditrepo;
+
+
 
 CREATE TABLE auditrepo.auditrepository
 (
