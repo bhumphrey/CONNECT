@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>org.connectopensource</groupId>
         <artifactId>Product</artifactId>
@@ -6,18 +7,86 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>DBScripts</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+    
+    
+
+    <modules>
+        <module>assigningauthoritydb</module>
+    </modules>
+
+    <properties>
+        <skip.db>true</skip.db>
+    </properties>
+
     <build>
-        <resources>
-            <resource>
-                <directory>${basedir}/</directory>
-                <includes>
-                    <include>**/*.sql</include>
-                </includes>
-                <excludes>
-                    <exclude>target/**</exclude>
-                </excludes>
-            </resource>
-        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>2.0.5</version>
+                <configuration>
+                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                    <changeLogFile>src/main/resources/changelog/db.changelog-master.xml</changeLogFile>
+                    <driver>${database.driver}</driver>
+                    <url>${liquibase.url}</url>
+                    <username>${database.username}</username>
+                    <password>${database.password}</password>
+                    <skip>${skip.db}</skip>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>default</id>
+            <properties>
+                <mysql.root.password>NHIE-Gateway</mysql.root.password>
+                <database.username>nhincuser</database.username>
+                <database.password>nhincpass</database.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>mysql</id>
+            <properties>
+                <database.driver>com.mysql.jdbc.Driver</database.driver>
+                <database.url>jdbc:mysql://localhost:3306</database.url>
+                <liquibase.url>jdbc:mysql://localhost:3306</liquibase.url>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>5.1.23</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <version>1.5</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>5.1.23</version>
+                            </dependency>
+                        </dependencies>
+                        <configuration>
+                            <driver>${database.driver}</driver>
+                            <url>${database.url}/</url>
+                            <username>root</username>
+                            <password>${mysql.root.password}</password>
+                            <enableFiltering>true</enableFiltering>
+                            <srcFiles>
+                                <srcFile>src/main/sql/dbdrop.sql</srcFile>
+                                <srcFile>src/main/sql/dbcreate.sql</srcFile>
+                            </srcFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
