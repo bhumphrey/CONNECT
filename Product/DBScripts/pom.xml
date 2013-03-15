@@ -13,6 +13,7 @@
 
     <modules>
         <module>assigningauthoritydb</module>
+        <module>auditrepo</module>
     </modules>
 
     <properties>

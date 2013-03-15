@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="anon">
+        <createTable tablespace="auditrepo" tableName="auditrepository">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="audit_timestamp" type="DATETIME">
+            </column>
+            <column name="eventId" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+            <column name="userId" type="VARCHAR(100)">
+            </column>
+            <column name="participationTypeCode" type="BIGINT">
+            </column>
+            <column name="participationTypeCodeRole" type="BIGINT">
+            </column>
+            <column name="participationIDTypeCode" type="VARCHAR(100)">
+            </column>
+            <column name="receiverPatientId" type="VARCHAR(128)">
+            </column>
+            <column name="senderPatientId" type="VARCHAR(128)">
+            </column>
+            <column name="communityId" type="VARCHAR(255)">
+            </column>
+            <column name="messageType" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="message" type="BLOB">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
+
+
