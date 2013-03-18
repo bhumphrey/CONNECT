@@ -1,18 +1,4 @@
 
--- begin logging
-CREATE DATABASE logging;
-
-CREATE TABLE logging.log (
-    dt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    context varchar(100) DEFAULT NULL,
-    logLevel varchar(10) DEFAULT NULL,
-    class varchar(500) DEFAULT NULL,
-    message longtext
-);
-
-GRANT SELECT,INSERT,UPDATE,DELETE ON logging.* to nhincuser;
--- end logging
-
 -- begin patientdb
 CREATE DATABASE patientdb;
 
