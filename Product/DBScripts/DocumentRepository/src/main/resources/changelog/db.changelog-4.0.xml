@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="anon">
+        <createTable tablespace="docrepository" tableName="document">
+            <column name="documentid" type="BIGINT"
+                autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="DocumentUniqueId" type="VARCHAR(64)">
+                <constraints nullable="false" />
+            </column>
+            <column name="DocumentTitle" type="VARCHAR(128)">
+                <constraints nullable="false" />
+            </column>
+            <column name="authorPerson" type="VARCHAR(64)">
+            </column>
+            <column name="authorInstitution" type="VARCHAR(64)">
+            </column>
+            <column name="authorRole" type="VARCHAR(64)">
+            </column>
+            <column name="authorSpecialty" type="VARCHAR(64)">
+            </column>
+            <column name="AvailabilityStatus" type="VARCHAR(64)">
+            </column>
+            <column name="ClassCode" type="VARCHAR(64)">
+            </column>
+            <column name="ClassCodeScheme" type="VARCHAR(64)">
+            </column>
+            <column name="ClassCodeDisplayName" type="VARCHAR(64)">
+            </column>
+            <column name="ConfidentialityCode" type="VARCHAR(64)">
+            </column>
+            <column name="ConfidentialityCodeScheme" type="VARCHAR(64)">
+            </column>
+            <column name="ConfidentialityCodeDisplayName" type="VARCHAR(64)">
+            </column>
+            <column name="CreationTime" type="datetime">
+            </column>
+            <column name="FormatCode" type="VARCHAR(64)">
+            </column>
+            <column name="FormatCodeScheme" type="varchar(64)">
+            </column>
+            <column name="FormatCodeDisplayName" type="varchar(64)">
+            </column>
+            <column name="PatientId" type="varchar(128)">
+            </column>
+            <column name="ServiceStartTime" type="datetime">
+            </column>
+            <column name="ServiceStopTime" type="datetime">
+            </column>
+            <column name="Status" type="varchar(64)">
+            </column>
+            <column name="Comments" type="varchar(256)">
+            </column>
+            <column name="Hash" type="varchar(1028)">
+            </column>
+            <column name="FacilityCode" type="varchar(64)">
+            </column>
+            <column name="FacilityCodeScheme" type="varchar(64)">
+            </column>
+            <column name="FacilityCodeDisplayName" type="varchar(64)">
+            </column>
+            <column name="IntendedRecipientPerson" type="varchar(128)">
+            </column>
+            <column name="IntendedRecipientOrganization" type="varchar(128)">
+            </column>
+            <column name="LanguageCode" type="varchar(64)">
+            </column>
+            <column name="LegalAuthenticator" type="varchar(128)">
+            </column>
+            <column name="MimeType" type="varchar(32)">
+            </column>
+            <column name="ParentDocumentId" type="varchar(64)">
+            </column>
+            <column name="ParentDocumentRelationship" type="varchar(64)">
+            </column>
+            <column name="PracticeSetting" type="varchar(64)">
+            </column>
+            <column name="PracticeSettingScheme" type="varchar(64)">
+            </column>
+            <column name="PracticeSettingDisplayName" type="varchar(64)">
+            </column>
+            <column name="DocumentSize" type="BIGINT">
+            </column>
+            <column name="SourcePatientId" type="varchar(128)">
+            </column>
+            <column name="Pid3" type="varchar(128)">
+            </column>
+            <column name="Pid5" type="varchar(128)">
+            </column>
+            <column name="Pid7" type="varchar(128)">
+            </column>
+            <column name="Pid8" type="varchar(128)">
+            </column>
+            <column name="Pid11" type="varchar(128)">
+            </column>
+            <column name="TypeCode" type="varchar(64)">
+            </column>
+            <column name="TypeCodeScheme" type="varchar(64)">
+            </column>
+            <column name="TypeCodeDisplayName" type="varchar(64)">
+            </column>
+            <column name="DocumentUri" type="varchar(128)">
+            </column>
+            <column name="RawData" type="blob">
+            </column>
+            <column name="Persistent" type="bigint">
+            </column>
+            <column name="OnDemand" type="boolean">
+            </column>
+            <column name="NewDocumentUniqueId" type="varchar(128)">
+            </column>
+            <column name="NewRepositoryUniqueId" type="varchar(128)">
+            </column>
+        </createTable>
+
+        <createTable tablespace="docrepository" tableName="eventcode">
+            <column name="eventcodeid" type="BIGINT">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="documentid" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+            <column name="EventCode" type="VARCHAR(64)">
+                <constraints nullable="false" />
+            </column>
+            <column name="EventCodeScheme" type="VARCHAR(64)">
+            </column>
+            <column name="EventCodeDisplayName" type="VARCHAR(64)">
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
+
+
+ 
