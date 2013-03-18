@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="anon">
+        <createTable tablespace="patientcorrelationdb" tableName="correlatedidentifiers">
+            <column name="correlationId" type="BIGINT"
+                autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="PatientAssigningAuthorityId" type="VARCHAR(64)">
+                <constraints nullable="false" />
+            </column>
+            <column name="PatientId" type="VARCHAR(128)">
+                <constraints nullable="false" />
+            </column>
+            <column name="CorrelatedPatientAssignAuthId" type="VARCHAR(64)">
+                <constraints nullable="false" />
+            </column>
+            <column name="CorrelatedPatientId" type="VARCHAR(128)">
+                <constraints nullable="false" />
+            </column>
+            <column name="CorrelationExpirationDate" type="datetime">
+            </column> 
+        </createTable>
+
+        <createTable tablespace="patientcorrelationdb" tableName="pddeferredcorrelation">
+            <column name="Id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="MessageId" type="VARCHAR(128)">
+                <constraints nullable="false" />
+            </column>
+            <column name="AssigingAuthorityId" type="VARCHAR(64)">
+                <constraints nullable="false" />
+            </column>
+            <column name="PatientId" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CreationTime" type="Datetime">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
+
+
+ 

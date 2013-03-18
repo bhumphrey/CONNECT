@@ -15,6 +15,7 @@
         <module>assigningauthoritydb</module>
         <module>auditrepo</module>
         <module>DocumentRepository</module>
+        <module>PatientCorrelationDB</module>
     </modules>
 
 

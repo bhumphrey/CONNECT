@@ -1,28 +1,4 @@
 
--- begin patientcorrelationdb
-CREATE DATABASE patientcorrelationdb;
-
-CREATE TABLE patientcorrelationdb.correlatedidentifiers (
-  correlationId int(10) unsigned NOT NULL auto_increment,
-  PatientAssigningAuthorityId varchar(64) NOT NULL,
-  PatientId varchar(128) NOT NULL,
-  CorrelatedPatientAssignAuthId varchar(64) NOT NULL,
-  CorrelatedPatientId varchar(128) NOT NULL,
-  CorrelationExpirationDate datetime,
-  PRIMARY KEY  (correlationId)
-);
-
-CREATE TABLE patientcorrelationdb.pddeferredcorrelation (
-  Id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  MessageId VARCHAR(100) NOT NULL,
-  AssigningAuthorityId varchar(64) NOT NULL,
-  PatientId varchar(128) NOT NULL,
-  CreationTime DATETIME NOT NULL,
-  PRIMARY KEY (Id)
-);
-
-GRANT SELECT,INSERT,UPDATE,DELETE ON patientcorrelationdb.* to nhincuser;
--- end patientcorrelationdb
 
 -- begin subscription repository creation
 CREATE DATABASE subscriptionrepository;
