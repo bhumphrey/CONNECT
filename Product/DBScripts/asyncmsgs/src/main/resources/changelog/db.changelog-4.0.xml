@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="anon">
+        <createTable tablespace="asyncmsgs" tableName="asyncmsgrepo">
+            <column name="Id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="MessageId" type="varchar(128)">
+                <constraints nullable="false" />
+            </column>
+            <column name="CreationTime" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="ResponseTime" type="datetime">
+            </column>
+            <column name="Duration" type="BIGINT"></column>
+            <column name="ServiceName" type="VARCHAR(45)"></column>
+            <column name="Direction" type="VARCHAR(10)"></column>
+            <column name="CommunityId" type="VARCHAR(128)"></column>
+            <column name="Status" type="VARCHAR(45)"></column>
+            <column name="ResponseType" type="VARCHAR(10)"></column>
+            <column name="Reserved" type="VARCHAR(100)"></column>
+            <column name="MsgData" type="BLOB"></column>
+            <column name="RspData" type="BLOB"></column>
+            <column name="AckData" type="BLOB"></column>
+        </createTable>
+    </changeSet>
+    
+</databaseChangeLog>
+
