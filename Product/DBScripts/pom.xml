@@ -19,6 +19,7 @@
         <module>SubscriptionRepository</module>
         <module>asyncmsgs</module>
         <module>patientdb</module>
+        <module>eventdb</module>
     </modules>
 
 
