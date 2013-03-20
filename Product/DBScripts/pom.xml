@@ -20,6 +20,7 @@
         <module>asyncmsgs</module>
         <module>patientdb</module>
         <module>eventdb</module>
+        <module>transepo</module>
     </modules>
 
 
