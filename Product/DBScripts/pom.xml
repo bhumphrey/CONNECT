@@ -18,6 +18,7 @@
         <module>PatientCorrelationDB</module>
         <module>SubscriptionRepository</module>
         <module>asyncmsgs</module>
+        <module>patientdb</module>
     </modules>
 
 

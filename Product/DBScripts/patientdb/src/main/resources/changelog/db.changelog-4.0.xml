@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="anon">
+        <createTable  tableName="patient">
+            <column name="patientId" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="dateOfBirth" type="date">
+            </column>
+            <column name="gender" type="VARCHAR(2)">
+            </column>
+            <column name="ssn" type="VARCHAR(9)">
+            </column>
+        </createTable>
+
+        <createTable tableName="identifier">
+            <column name="identifierId" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="patientId" type="BIGINT">
+                <constraints nullable="false"
+                    foreignKeyName="fk_identifier_patient" references="patient(patientId)"
+                    deleteCascade="false" />
+            </column>
+            <column name="id" type="VARCHAR(64)" />
+            <column name="organizationId" type="VARCHAR(64)" />
+        </createTable>
+        
+         <createTable  tableName="personname">
+            <column name="personnameId" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="patientId" type="BIGINT">
+                <constraints nullable="false"
+                    foreignKeyName="fk_identifier_patient" references="patient(patientId)"
+                    deleteCascade="false" />
+            </column>
+            <column name="prefix" type="VARCHAR(64)" />
+            <column name="firstName" type="VARCHAR(64)" />
+            <column name="middleName" type="VARCHAR(64)" />
+            <column name="lastName" type="VARCHAR(64)" />
+            <column name="suffix" type="VARCHAR(64)" />
+        </createTable>
+        
+          <createTable  tableName="address">
+            <column name="addressId" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="patientId" type="BIGINT">
+                <constraints nullable="false"
+                    foreignKeyName="fk_identifier_patient" references="patient(patientId)"
+                    deleteCascade="false" />
+            </column>
+            <column name="street1" type="VARCHAR(64)" />
+            <column name="street2" type="VARCHAR(64)" />
+            <column name="city" type="VARCHAR(128)" />
+            <column name="state" type="VARCHAR(128)" />
+            <column name="city" type="VARCHAR(128)" />
+            <column name="postal" type="VARCHAR(45)" />
+        </createTable>
+        
+        <createTable  tableName="phonenumber">
+            <column name="phonenumberId" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="patientId" type="BIGINT">
+                <constraints nullable="false"
+                    foreignKeyName="fk_identifier_patient" references="patient(patientId)"
+                    deleteCascade="false" />
+            </column>
+            <column name="value" type="VARCHAR(64)" />
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>
+
+
+ 
